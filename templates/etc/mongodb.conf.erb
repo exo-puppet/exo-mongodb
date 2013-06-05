@@ -1,0 +1,97 @@
+# mongodb.conf
+
+# Where to store the data.
+
+# Note: if you run mongodb as a non-root user (recommended) you may
+# need to create and set permissions for this directory manually,
+# e.g., if the parent directory isn't mutable by the mongodb user.
+dbpath=/var/lib/mongodb
+
+#where to log
+logpath=/var/log/mongodb/mongodb.log
+
+logappend=true
+
+# Set this option to configure the mongod or mongos process to bind to and listen for connections from applications on this address. 
+# You may attach mongod or mongos instances to any interface; however, if you attach the process to a publicly accessible interface, 
+# implement proper authentication or firewall restrictions to protect the integrity of your database.
+# You may concatenate a list of comma separated values to bind mongod to multiple IP addresses.
+bind_ip=127.0.0.1
+
+#port = 27017
+
+# Specify a file location to hold the "PID" or process ID of the mongod process. Useful for tracking the mongod process in combination with the fork setting.
+# Without a specified pidfilepath, mongos creates no PID file.
+# Without this option, mongod creates no PID file.
+#pidfilepath
+
+# Disables write-ahead journaling
+# nojournal = true
+
+# Enables periodic logging of CPU utilization and I/O wait
+#cpu = true
+
+# Turn on/off security.  Off is currently the default
+#noauth = true
+#auth = true
+
+# Verbose logging output.
+#verbose = true
+
+# Inspect all client data for validity on receipt (useful for
+# developing drivers)
+#objcheck = true
+
+# Enable db quota management
+#quota = true
+
+# Set oplogging level where n is
+#   0=off (default)
+#   1=W
+#   2=R
+#   3=both
+#   7=W+some reads
+#diaglog = 0
+
+# Ignore query hints
+#nohints = true
+
+# Disable the HTTP interface (Defaults to localhost:28017).
+#nohttpinterface = true
+
+# Turns off server-side scripting.  This will result in greatly limited
+# functionality
+#noscripting = true
+
+# Turns off table scans.  Any query that would do a table scan fails.
+#notablescan = true
+
+# Disable data file preallocation.
+#noprealloc = true
+
+# Specify .ns file size for new databases.
+# nssize = <size>
+
+# Accout token for Mongo monitoring server.
+#mms-token = <token>
+
+# Server name for Mongo monitoring server.
+#mms-name = <server-name>
+
+# Ping interval for Mongo monitoring server.
+#mms-interval = <seconds>
+
+# Replication Options
+
+# in master/slave replicated mongo databases, specify here whether
+# this is a slave or master
+#slave = true
+#source = master.example.com
+# Slave only: specify a single database to replicate
+#only = master.example.com
+# or
+#master = true
+#source = slave.example.com
+
+# in replica set configuration, specify the name of the replica set
+# replSet = setname 
