@@ -1,6 +1,6 @@
 class mongodb::params {
   case $::operatingsystem {
-    /(Ubuntu|Debian)/: {
+    /(Ubuntu)/: {
             $service_name       = "mongodb"
     }
     default: {
