@@ -45,7 +45,7 @@
 #
 # == Examples
 #
-#     class {"mongodb" : 
+#     class {"mongodb" :
 #       present => true,
 #       db_directory_path => "/srv/mongodb"
 #     }
@@ -53,13 +53,11 @@
 ################################################################################
 class mongodb (
   $present            = true,
-  $bind_ip            = "127.0.0.1",
-  $bind_port          = "27017",
+  $bind_ip            = '127.0.0.1',
+  $bind_port          = '27017',
   $security           = false,
-  $db_directory_path  = "/var/lib/mongodb",
-  $log_directory_path = "/var/log/mongodb",
-  ) {
-
+  $db_directory_path  = '/var/lib/mongodb',
+  $log_directory_path = '/var/log/mongodb',) {
   include mongodb::params, mongodb::install, mongodb::config, mongodb::service
 
 }

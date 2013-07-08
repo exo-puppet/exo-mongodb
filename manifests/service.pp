@@ -1,11 +1,12 @@
 class mongodb::service {
   require mongodb::config
-  service { "mongodb":
+
+  service { 'mongodb':
     ensure     => running,
     name       => $mongodb::params::service_name,
     hasstatus  => true,
     hasrestart => true,
-    require => Class["mongodb::config"],
+    require    => Class['mongodb::config'],
   }
 }
 
