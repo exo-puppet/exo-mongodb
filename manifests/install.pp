@@ -16,9 +16,9 @@ class mongodb::install {
           true    => present,
           default => purged,
         },
-        name    => $mongodb::params::package_name,
+        name    => $mongodb::package_name,
         require => [
-          File['/etc/mongodb.conf'],
+          File['mongodb.conf'],
           Repo::Define['mongodb-10gen-repo'],
           Exec['repo-update']],
       }

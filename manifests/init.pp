@@ -12,6 +12,13 @@
 #
 #       this variable allow to chose if the package should be installed (true) or not (false)
 #
+#   [+package_name+]
+#       (OPTIONAL) (default: mongodb-10gen)
+#
+#       The MongoDB package name to use for the installation:
+#         - mongodb-10gen : the old MongoDB 2.4  package (default)
+#         - mongodb-org   : the new MongoDB 2.6+ package
+#
 #   [+bind_ip+]
 #       (OPTIONAL) (default: 127.0.0.1)
 #
@@ -53,11 +60,12 @@
 ################################################################################
 class mongodb (
   $present            = true,
+  $package_name       = $mongodb::params::package_name_24,
   $bind_ip            = '127.0.0.1',
   $bind_port          = '27017',
   $security           = false,
   $db_directory_path  = '/var/lib/mongodb',
-  $log_directory_path = '/var/log/mongodb',) {
+  $log_directory_path = '/var/log/mongodb',) inherits mongodb::params {
   include mongodb::params, mongodb::install, mongodb::config, mongodb::service
 
 }

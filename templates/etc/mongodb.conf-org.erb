@@ -1,0 +1,54 @@
+# ###################################
+# This file is managed by puppet
+# PLEASE DON'T MODIFY BY HAND
+# ###################################
+
+
+# ###################################
+# STORAGE
+# ###################################
+storage:
+  # Where to store the data.
+  # Note: if you run mongodb as a non-root user (recommended) you may need to create and set permissions for this directory manually,
+  # e.g., if the parent directory isn't mutable by the mongodb user.
+  dbPath: "<%= scope.lookupvar("mongodb::db_directory_path") %>"
+  # Set to true to modify the storage pattern of the data directory to store each database's files in a distinct folder.
+  # This option will create directories within the dbpath named for each directory.
+  # Use this option in conjunction with your file system and device configuration so that MongoDB will store data
+  # on a number of distinct disk devices to increase write throughput or disk capacity.
+  directoryPerDB: true
+
+# ###################################
+# SECURITY
+# ###################################
+security:
+  # enable or disable security ([enabled|disabled] - default: disabled
+<% if scope.lookupvar('mongodb::security') != false -%>
+  authorization: "enabled"
+<% else -%>
+  authorization: "disabled"
+<% end -%>
+
+# ###################################
+# NETWORK
+# ###################################
+net:
+  # Set this option to configure the mongod or mongos process to bind to and listen for connections from applications on this address. 
+  # You may attach mongod or mongos instances to any interface; however, if you attach the process to a publicly accessible interface, 
+  # implement proper authentication or firewall restrictions to protect the integrity of your database.
+  # You may concatenate a list of comma separated values to bind mongod to multiple IP addresses.
+  bindIp:  <%= scope.lookupvar("mongodb::bind_ip") %>
+  # Which is the default MongoDB port for database instances. MongoDB can bind to any port. You can also filter access based on port using network filtering tools.
+  port: <%= scope.lookupvar("mongodb::bind_port") %>
+
+# ###################################
+# LOGS
+# ###################################
+#where to log
+systemLog:
+  destination: file
+  path: "<%= scope.lookupvar("mongodb::log_directory_path") %>/mongodb.log"
+  # if true : mongod does not overwrite an existing log file following the server start operation.
+  # if false : mongod will errase the log file at each start operation.
+  logappend=true
+
