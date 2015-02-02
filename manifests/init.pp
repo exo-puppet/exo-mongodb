@@ -3,6 +3,7 @@
 #   This module manages MongoDB
 #
 #   Tested platforms:
+#    - Ubuntu 14.04 Trusty Tahr
 #    - Ubuntu 12.04 Precise
 #
 # == Parameters
