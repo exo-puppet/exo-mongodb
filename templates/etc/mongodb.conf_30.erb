@@ -17,6 +17,10 @@ storage:
   # Use this option in conjunction with your file system and device configuration so that MongoDB will store data
   # on a number of distinct disk devices to increase write throughput or disk capacity.
   directoryPerDB: true
+  # Specifies the storage engine for the mongod database. Valid options include mmapv1 and wiredTiger.
+  engine: <%= scope.lookupvar("mongodb::storage_engine") %>
+  mmapv1:
+    nsSize: <%= scope.lookupvar("mongodb::storage_mmapv1_nsSize") %>
 
 # ###################################
 # SECURITY

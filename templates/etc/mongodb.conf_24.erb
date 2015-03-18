@@ -16,6 +16,10 @@ dbpath=<%= scope.lookupvar("mongodb::db_directory_path") %>
 # Use this option in conjunction with your file system and device configuration so that MongoDB will store data
 # on a number of distinct disk devices to increase write throughput or disk capacity.
 directoryperdb=true
+# Specify this value in megabytes. The maximum size is 2047 megabytes.
+# Use this setting to control the default size for all newly created namespace files (i.e .ns). 
+# This option has no impact on the size of existing namespace files.
+nssize=<%= scope.lookupvar("mongodb::storage_mmapv1_nsSize") %>
 
 # ###################################
 # SECURITY
