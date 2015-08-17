@@ -1,31 +1,8 @@
 class mongodb::install {
   case $::operatingsystem {
     /(Ubuntu)/ : {
-      repo::define { 'mongodb-10gen-repo':
-        file_name    => 'mongodb-10gen',
-        url          => $mongodb::version ? {
-          $mongodb::params::version_label_24 => $mongodb::params::repo_url_24,
-          $mongodb::params::version_label_26 => $mongodb::params::repo_url_26,
-          $mongodb::params::version_label_30 => $mongodb::params::repo_url_30,
-          default => fail("The specified MongoDB version is not managed (${mongodb::version})")
-        },
-        distribution => $mongodb::version ? {
-          $mongodb::params::version_label_24 => $mongodb::params::repo_dist_24,
-          $mongodb::params::version_label_26 => $mongodb::params::repo_dist_26,
-          $mongodb::params::version_label_30 => $mongodb::params::repo_dist_30,
-          default => fail("The specified MongoDB version is not managed (${mongodb::version})")
-        },
-        sections     => $mongodb::version ? {
-          $mongodb::params::version_label_24 => $mongodb::params::repo_sections_24,
-          $mongodb::params::version_label_26 => $mongodb::params::repo_sections_26,
-          $mongodb::params::version_label_30 => $mongodb::params::repo_sections_30,
-          default => fail("The specified MongoDB version is not managed (${mongodb::version})")
-        },
-        source       => false,
-        key          => '7F0CEB10',
-        key_server   => 'keyserver.ubuntu.com',
-        notify       => Exec['repo-update'],
-      }
+
+      class {'mongodb::install_repo': version=> $mongodb::version}
 
       # If MongoDB > 2.4 we need to ensure the old 2.4 package is removed before installing the new one
       # because 2.4 version use another package name
