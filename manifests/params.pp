@@ -20,6 +20,7 @@ class mongodb::params {
       $service_name_26        = 'mongod'
       $package_name_26        = 'mongodb-org'
       $package_name_client_26 = 'mongodb-org-shell'
+      $package_name_tools_26  = 'mongodb-org-tools'
       $template_config_26     = 'mongodb/etc/mongodb.conf_26.erb'
       $config_file_26         = '/etc/mongod.conf'
 
@@ -31,6 +32,7 @@ class mongodb::params {
       $service_name_30        = $service_name_26
       $package_name_30        = $package_name_26
       $package_name_client_30 = $package_name_client_26
+      $package_name_tools_30  = $package_name_tools_26
       $template_config_30     = 'mongodb/etc/mongodb.conf_30.erb'
       $config_file_30         = $config_file_26
 
