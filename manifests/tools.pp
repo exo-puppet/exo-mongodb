@@ -55,9 +55,7 @@ class mongodb::tools (
           $mongodb::params::version_label_30 => $mongodb::params::package_name_client_30,
           default => fail("The specified MongoDB version is not managed (${mongodb::version})")
         },
-        require => [
-          Repo::Define['mongodb-10gen-repo'],
-          Exec['repo-update']],
+        require => [Apt::Source['mongodb-10gen'],Class['apt::update']],
       }
 
       if ($mongodb::tools::version != $mongodb::params::version_label_24) {
@@ -71,9 +69,7 @@ class mongodb::tools (
             $mongodb::params::version_label_30 => $mongodb::params::package_name_tools_30,
             default => fail("The specified MongoDB version is not managed (${mongodb::version})")
           },
-          require => [
-            Repo::Define['mongodb-10gen-repo'],
-            Exec['repo-update']],
+          require => [Apt::Source['mongodb-10gen'],Class['apt::update']],
         }
       }
     }

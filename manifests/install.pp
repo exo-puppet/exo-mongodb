@@ -26,8 +26,9 @@ class mongodb::install {
         },
         require => [
           File['mongodb.conf'],
-          Repo::Define['mongodb-10gen-repo'],
-          Exec['repo-update']],
+          Apt::Source['mongodb-10gen'],
+          Class['apt::update'],
+        ],
       }
 
     }

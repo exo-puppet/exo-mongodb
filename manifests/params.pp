@@ -5,7 +5,7 @@ class mongodb::params {
       $version_label_24       = '2.4'
       $repo_url_24            = 'http://downloads-distro.mongodb.org/repo/ubuntu-upstart'
       $repo_dist_24           = 'dist'
-      $repo_sections_24       = ['10gen']
+      $repo_sections_24       = '10gen'
       $service_name_24        = 'mongodb'
       $package_name_24        = 'mongodb-10gen'
       $package_name_client_24 = 'mongodb-client'
@@ -28,7 +28,7 @@ class mongodb::params {
       $version_label_30       = '3.0'
       $repo_url_30            = 'http://repo.mongodb.org/apt/ubuntu'
       $repo_dist_30           = "${lsbdistcodename}/mongodb-org/3.0"
-      $repo_sections_30       = ['multiverse']
+      $repo_sections_30       = 'multiverse'
       $service_name_30        = $service_name_26
       $package_name_30        = $package_name_26
       $package_name_client_30 = $package_name_client_26
