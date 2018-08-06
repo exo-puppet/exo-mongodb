@@ -29,24 +29,26 @@ class mongodb::mms::agent (
     },
     source   => "${download_directory}/${target_filename}",
     provider => 'dpkg',
-  } ->
-  file { '/etc/mongodb-mms/monitoring-agent.config':
-    ensure  => $mongodb::mms::agent::ensure ? {
-      'absent' => 'absent',
-      default  => 'file'
-    },
-    owner   => 'root',
-    group   => 'mongodb-mms-agent',
-    mode    => '0640',
-    content => template('mongodb/etc/mongodb-mms/monitoring-agent.config.erb'),
-    notify  => Service['mongodb-mms-monitoring-agent'],
-    require => Package['mongodb-mms-monitoring-agent'],
-  } ->
-  service { 'mongodb-mms-monitoring-agent':
-    ensure  => $mongodb::mms::agent::ensure ? {
-      'started' => 'running',
-      default   => 'stopped'
-    },
-    require => Package['mongodb-mms-monitoring-agent'],
+  }
+
+  if $mongodb::mms::agent::ensure == 'absent' {
+    file { '/etc/mongodb-mms/monitoring-agent.config':
+      ensure => absent
+    }
+  } else {
+    file { '/etc/mongodb-mms/monitoring-agent.config':
+      ensure  => 'file',
+      owner   => 'root',
+      group   => 'mongodb-mms-agent',
+      mode    => '0640',
+      content => template('mongodb/etc/mongodb-mms/monitoring-agent.config.erb'),
+      notify  => Service['mongodb-mms-monitoring-agent'],
+      require => Package['mongodb-mms-monitoring-agent'],
+    } ->
+    service { 'mongodb-mms-monitoring-agent':
+      ensure  => 'running',
+      require => Package['mongodb-mms-monitoring-agent'],
+    }
+
   }
 }
